@@ -1,0 +1,6 @@
+.title1, .title2 {
+  text-align: center;
+}
+.btn {
+  margin-top: 50rpx
+}

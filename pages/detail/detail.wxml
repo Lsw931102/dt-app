@@ -1,0 +1,24 @@
+<view  class="container">
+  <view class='top-bar'>
+    <view class='title'>
+     <text class='title1'>{{name}}门店列表</text>
+    </view>
+    <view class='btn'>
+      <button size='mini' type='primary' bindtap='addStore'>新增门店</button>
+    </view>
+  </view>
+  <view class='content'>
+    <view class='table'>
+      <view class='tr'>
+        <view class='th'>门店</view>
+        <view class='th'>联系人</view>
+        <view class='th'>联系电话</view>
+      </view>
+      <view class='tr' wx:for="{{lists}}">
+        <view class='td'>{{item.name}}</view>
+        <view class='td'>{{item.contact}}</view>
+        <view class='td'>{{item.phone}}</view>
+      </view>
+    </view>
+  </view>
+</view>

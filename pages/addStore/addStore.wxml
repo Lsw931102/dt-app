@@ -1,0 +1,72 @@
+<view class="container">
+  <view class='top-bar'>
+    <view class='title'>
+     <text class='title1'>新增门店</text>
+    </view>
+  </view>
+  <view class='content'>
+    <form bindsubmit='formSubmit' bindreset='formReset'>
+      <view class='form-item form-input'>
+        <text>所属商户</text>
+        <input type='text' id='belongStore' value="{{belongStore}}" bindinput='getInputVal'></input>
+        <label wx:if="{{belongStore==''}}">*</label>
+      </view>
+      <view class='form-item form-input'>
+        <text>门店名称</text>
+        <input type='text' id='storeName' value="{{storeName}}" bindinput='getInputVal'></input>
+        <label wx:if="{{storeName==''}}">*</label>
+      </view>
+      <view class='form-item form-input'>
+        <text>门店电话</text>
+        <input type='text' id='storePhone' value="{{storePhone}}" bindinput='getInputVal'></input>
+        <label wx:if="{{storePhone==''}}">*</label>
+      </view>
+      <view class='form-item form-input'>
+        <text>门店地址</text>
+        <input type='text' id='address' value="{{address}}" bindinput='getInputVal'></input>
+        <label wx:if="{{address==''}}">*</label>
+      </view>
+      <view class='form-item form-radio'>
+        <text>行业类别</text>
+        <radio-group>
+          <label class='radio'>
+            <radio value='CY' checked>餐饮</radio>
+          </label>
+        </radio-group>
+      </view>
+      <view class='form-item form-input'>
+        <text>店招照片</text>
+        <input type='text' id='picture' value="{{picture}}" bindinput='getInputVal'></input>
+        <label wx:if="{{picture==''}}">*</label>
+      </view>
+      <view class='form-item form-input'>
+        <text>营业执照</text>
+        <input type='text' id='licence' value="{{licence}}" bindinput='getInputVal'></input>
+        <label wx:if="{{licence==''}}">*</label>
+      </view>
+      <view class='form-item form-input'>
+        <text>食品安全许可</text>
+        <input type='text' id='safetyLicence' value="{{safetyLicence}}" bindinput='getInputVal'></input>
+        <label wx:if="{{safetyLicence==''}}">*</label>
+      </view>
+      <view class='form-item form-input'>
+        <text>店长手机号</text>
+        <input type='text' id='shoperPhone' value="{{shoperPhone}}" bindinput='getInputVal'></input>
+        <label wx:if="{{shoperPhone==''}}">*</label>
+      </view>
+      <view class='form-item form-input'>
+        <text>店长姓名</text>
+        <input type='text' id='shoperName' value="{{shoperName}}" bindinput='getInputVal'></input>
+        <label wx:if="{{shoperName==''}}">*</label>
+      </view>
+      <view class="btn-area">
+        <view class='btn-blue'>
+          <button size='mini' formType="submit">提交</button>
+        </view>
+        <view class='btn-blue'>
+          <button size='mini' formType="reset">重置</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>

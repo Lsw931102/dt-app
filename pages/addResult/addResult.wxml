@@ -1,0 +1,11 @@
+<view class="container">
+  <view class='top-bar'>
+    <view class='title'>
+     <view class='title1'>{{title1}}</view>
+     <view class='title2'>{{title2}}</view>
+    </view>
+  </view>
+  <view class='btn'>
+    <button size='default' class='btnBlue' bindtap='addAgain'>{{btnText}}</button>
+  </view>
+</view>

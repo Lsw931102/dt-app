@@ -1,0 +1,17 @@
+/* pages/detail/detail.wxss */
+.top-bar {
+  width: 100%;
+  margin: 40rpx 0;
+}
+.title {
+  float: left;
+  margin-left: 50rpx;
+}
+.btn {
+  float: right;
+  margin-right: 50rpx;
+}
+.content {
+  width: 100%;
+  font-size: 32rpx;
+}
