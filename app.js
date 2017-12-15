@@ -1,39 +1,77 @@
 //app.js
+// 服务器地址配置
+let url_prefix = 'https://app.fast.wangziqing.cc'; // 线上环境
+if (wx.getSystemInfoSync().platform == "devtools") {
+  url_prefix = 'https://app.fast.wangziqing.cc'; // 开发环境
+}
+const Loading = require('utils/loading');
+const oauth = require('utils/oauth');
+oauth.url_prefix = url_prefix;
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
-      }
-    })
-  },
   globalData: {
-    userInfo: null
+    openid: '',
+    sessionkey: '',
+    userInfo: null,
+    IsAuth: false // 用户是否已经授权
+  },
+  onShow: function () {
+    // 验证用户登陆状态是否已经过期
+    wx.checkSession({
+      success: () => {
+        console.log('登陆未过期');
+        // 验证是否已经授权
+        wx.getSetting({
+          success: (res) => {
+            console.log(res)
+            if (!res.authSetting['scope.userInfo']) {
+              // 未授权
+                // 未授权
+                wx.showModal({
+                  title: '提示',
+                  content: '若不登陆授权获取用户信息，则无法使用该小程序；请在微信【发现】——【小程序】——删除【地推小程序】，重新搜索登陆授权即可使用',
+                  mask: true,
+                  duration: 2000,
+                  success: (res) => {
+                    wx.navigateBack({
+                      delta: 1
+                    })
+                  }
+                })
+              this.globalData.IsAuth = false;
+            } else {
+              // 已授权
+              wx.redirectTo({
+                url: '/pages/list/list',
+              })
+              this.globalData.IsAuth = true;
+            }
+          }
+        })
+      },
+      fail: () => {
+        console.log('登陆已过期')
+        // 重新登陆， 跳转到登陆页面
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+      }
+    })
+    // 验证用户是否已经授权
+  },
+  // 调取接口方法封装
+  request: function(obj, mark) {
+    // obj为传入参数，mark为loading是否显示
+    oauth.request(obj, mark);
+  },
+  login: function (cd, fail) {
+    return oauth.login(cd, fail);
+  },
+  // 手机号验证
+  validPhone: function (phone) {
+    if (!/^1[0-9]{10}$/.test(phone)) {
+      return false
+    } else {
+      return true
+    }
   }
 })

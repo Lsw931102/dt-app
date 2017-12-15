@@ -20,6 +20,9 @@
   font-size: 32rpx;
   margin-top: 40rpx;
 }
+.content-center {
+  width: 100%;
+}
 navigator {
   color: deepskyblue;
 }
@@ -73,12 +76,16 @@ form .form-item {
 }
 .form-input text {
   float: left;
-  width: 30%;
-  text-align: left;
+  width: 32%;
+  text-align: center;
 }
-.form-input input {
+.form-input .input-box {
   float: left;
-  /* width: 57%; */
+  width: 65%;
+}
+.form-input .input-box input {
+  width: 100%;
+  padding: 0 10rpx;
   border: 1px solid #dadada;
   box-sizing: border-box;
   border-radius: 3px;
@@ -91,8 +98,8 @@ form .form-item {
 }
 form .form-radio text {
   float: left;
-  width: 30%;
-  text-align: left;
+  width: 32%;
+  text-align: center;
 }
 form .form-radio radio-group {
   float: left;

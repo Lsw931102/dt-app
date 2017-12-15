@@ -1,28 +1,36 @@
 <view class="container">
   <view class='top-bar'>
     <view class='title'>
-     <text class='title1'>新增门店</text>
+     <text class='title1'>新增商户</text>
     </view>
   </view>
   <view class='content'>
     <form bindsubmit='formSubmit' bindreset='formReset'>
       <view class='form-item form-input'>
         <text>商户名称</text>
-        <input type='text' id="name" value="{{name}}" bindinput='getInputVal'></input>
+        <view class='input-box'>
+          <input type='text' id="name" value="{{name}}" bindinput='getInputVal'></input>
+        </view>
         <label wx:if="{{name==''}}">*</label>
       </view>
       <view class='form-item form-input'>
-        <text>商户LOGO（选填）</text>
-        <input type='text' id="logo" value="{{logo}}" bindinput='getInputVal'></input>
+        <text>商户LOGO</text>
+        <view class='input-box'>
+          <input type='text' id="logo" value="{{logo}}" bindinput='getInputVal' bindfocus="upFile"></input>
+        </view>
       </view>
       <view class='form-item form-input'>
-        <text>商户管理员姓名</text>
-        <input type='text' id="managerName" value="{{managerName}}" bindinput='getInputVal'></input>
+        <text>管理员姓名</text>
+        <view class='input-box'>
+          <input type='text' id="managerName" value="{{managerName}}" bindinput='getInputVal'></input>
+        </view>
         <label wx:if="{{managerName==''}}">*</label>
       </view>
       <view class='form-item form-input'>
-        <text>商户管理员手机号</text>
-        <input type='text' id="managerPhone" value="{{managerPhone}}" bindinput='getInputVal'></input>
+        <text>管理员手机号</text>
+        <view class='input-box'>
+          <input type='text' id="managerPhone" value="{{managerPhone}}" bindinput='getInputVal'></input>
+        </view>
         <label wx:if="{{managerPhone==''}}">*</label>
       </view>
       <view class="btn-area">

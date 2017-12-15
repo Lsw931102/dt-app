@@ -1,5 +1,5 @@
+const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -25,8 +25,27 @@ Page({
       warn = '商户管理员姓名不能为空~';
     } else if (this.data.managerPhone == '') {
       warn = '商户管理员手机号不能为空~';
+    } else if (!app.validPhone(this.data.managerPhone)) {
+      warn = '请填入合法的商户管理员手机号~';
     } else {
       // 信息都填写完整
+      // 备份信息
+      wx.setStorage({
+        key: "commerName",
+        data: this.data.name
+      })
+      wx.setStorage({
+        key: "commerManagerName",
+        data: this.data.name
+      })
+      wx.setStorage({
+        key: "commerLogo",
+        data: this.data.logo
+      })
+      wx.setStorage({
+        key: "commerManagerPhone",
+        data: this.data.managerPhone
+      })
       flag = false;
       let rangeNum = Math.random() * 10;
       if (rangeNum >= 5) {
@@ -48,59 +67,39 @@ Page({
       }) 
     }
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
+  // 重置
+  formReset: function() {
+    this.setData({
+      name: '',
+      logo: '',
+      managerName: '',
+      managerPhone: ''
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
+  // Logo上传
+  upFile: function() {
+    wx.chooseImage({
+      success: (res) => {
+        console.log(res);
+        var tempFilePaths = res.tempFilePaths
+        wx.uploadFile({
+          url: 'https://example.weixin.qq.com/upload', //仅为示例，后期需改动 todo
+          filePath: tempFilePaths[0],
+          name: 'logo',
+          formData: {
+            // 'user': 'test'
+          },
+          success: (res) => {
+            var data = res.data
+            //do something
+          },
+          fail: (res) => {
+            console.log(res);
+            console.log('上传失败：' + res)
+          }
+        })
+      }
+    })
   }
+  
 })
