@@ -64,6 +64,12 @@ navigator {
   font-weight: 300;
   background-color: #eee;
 }
+.no-data {
+  font-size: 28rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  text-align: center;
+}
 
 /* 模拟表单样式 */
 form {

@@ -14,11 +14,14 @@
         <view class='th'>状态</view>
         <view class='th'>本月订单</view>
       </view>
-      <view class='tr' wx:for="{{storeLists}}">
-        <view class='td'><navigator url='../detail/detail?id={{item.id}}&name={{item.name}}'>{{item.name}}</navigator></view>
-        <view class='td'>{{item.state}}</view>
-        <view class='td'>{{item.num}}</view>
-      </view>
+      <block wx:if="{{storeLists.length}}">
+        <view class='tr' wx:for="{{storeLists}}">
+          <view class='td'><navigator url='../detail/detail?id={{item.id}}&name={{item.name}}'>{{item.name}}</navigator></view>
+          <view class='td'>{{item.state}}</view>
+          <view class='td'>{{item.num}}</view>
+        </view>
+      </block>
+      <view class='no-data' wx:else>暂无数据~~</view>
     </view>
   </view>
 </view>

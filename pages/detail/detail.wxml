@@ -14,11 +14,14 @@
         <view class='th'>联系人</view>
         <view class='th'>联系电话</view>
       </view>
-      <view class='tr' wx:for="{{lists}}">
-        <view class='td'>{{item.name}}</view>
-        <view class='td'>{{item.contact}}</view>
-        <view class='td'>{{item.phone}}</view>
-      </view>
+      <block wx:if="{{lists.length}}">
+        <view class='tr' wx:for="{{lists}}">
+          <view class='td'>{{item.name}}</view>
+          <view class='td'>{{item.contact}}</view>
+          <view class='td'>{{item.phone}}</view>
+        </view>
+      </block>
+      <view class='no-data' wx:else>暂无数据~~</view>
     </view>
   </view>
 </view>

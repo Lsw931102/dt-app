@@ -56,7 +56,6 @@ App({
         })
       }
     })
-    // 验证用户是否已经授权
   },
   // 调取接口方法封装
   request: function(obj, mark) {
